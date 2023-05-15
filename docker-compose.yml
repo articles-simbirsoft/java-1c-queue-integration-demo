@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: App.Dockerfile
+    image: bloshound/java-activemq-1c-integration-demo
+    ports:
+      - '8880:8080'
+    restart: always
+    depends_on:
+      - activemq
+    environment:
+      - ACTIVEMQ_BROKER_URL=tcp://activemq:61616
+    networks:
+      - java-activemq-1c
+
+  activemq:
+    image: webcenter/activemq:5.14.3
+    restart: always
+    ports:
+      - '8161:8161'
+      - '61616:61616'
+      - '61613:61613'
+    networks:
+      - java-activemq-1c
+
+networks:
+  java-activemq-1c:
+
+
+
+
+

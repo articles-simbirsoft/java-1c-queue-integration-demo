@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <p>
+        <meta charset="UTF-8">
+        <title>List of messages</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </p>
+</head>
+<body>
+<h3>
+    <span>Всего количество прочитанных сообщений: </span><span th:text="${messageEntries.size()}"></span>
+</h3>
+<p>
+<div>
+    <form action="/messages" method="get">
+        <button type="submit">Обновить</button>
+    </form>
+</div>
+</p>
+<div>
+    <p>
+    <table class="table table-bordered table-dark">
+        <thead>
+        <tr>
+            <th>Messages</th>
+        </tr>
+        </thead>
+        <tbody th:each="messageEntry : ${messageEntries}">
+        <tr>
+            <td>
+                <span th:text="${messageEntry.key}"> </span>
+            </td>
+            <td>
+                <span th:text="${messageEntry.value}"> </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </p>
+</div>
+</body>
+</html>
